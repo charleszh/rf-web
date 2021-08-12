@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20210721 10:14:43.965" generator="Robot 3.0.4 (Python 2.7.15 on win32)">
+<suite source="D:\Setup\Python27\Scripts\LearnRF.robot" id="s1" name="LearnRF">
+<test id="s1-t1" name="Demo">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test The RF Principle</arg>
+</arguments>
+<msg timestamp="20210721 10:14:44.584" level="INFO">Test The RF Principle</msg>
+<status status="PASS" endtime="20210721 10:14:44.585" starttime="20210721 10:14:44.584"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:14:46.585" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:14:46.585" starttime="20210721 10:14:44.585"></status>
+</kw>
+<kw name="TestUKW">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Debugging</arg>
+</arguments>
+<msg timestamp="20210721 10:14:46.586" level="INFO">Debugging</msg>
+<status status="PASS" endtime="20210721 10:14:46.587" starttime="20210721 10:14:46.586"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:46.587" starttime="20210721 10:14:46.585"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:46.587" critical="yes" starttime="20210721 10:14:44.584"></status>
+</test>
+<test id="s1-t2" name="Demo1">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test Case Demo1</arg>
+</arguments>
+<msg timestamp="20210721 10:14:46.589" level="INFO">Test Case Demo1</msg>
+<status status="PASS" endtime="20210721 10:14:46.589" starttime="20210721 10:14:46.589"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:14:48.591" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:14:48.591" starttime="20210721 10:14:46.589"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:48.591" critical="yes" starttime="20210721 10:14:46.588"></status>
+</test>
+<test id="s1-t3" name="Demo2">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test The RF Principle</arg>
+</arguments>
+<msg timestamp="20210721 10:14:48.592" level="INFO">Test The RF Principle</msg>
+<status status="PASS" endtime="20210721 10:14:48.592" starttime="20210721 10:14:48.592"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:14:50.594" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:14:50.594" starttime="20210721 10:14:48.593"></status>
+</kw>
+<kw name="TestUKW">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Debugging</arg>
+</arguments>
+<msg timestamp="20210721 10:14:50.595" level="INFO">Debugging</msg>
+<status status="PASS" endtime="20210721 10:14:50.595" starttime="20210721 10:14:50.595"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:50.595" starttime="20210721 10:14:50.594"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:50.595" critical="yes" starttime="20210721 10:14:48.591"></status>
+</test>
+<test id="s1-t4" name="Demo11">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test Case Demo1</arg>
+</arguments>
+<msg timestamp="20210721 10:14:50.596" level="INFO">Test Case Demo1</msg>
+<status status="PASS" endtime="20210721 10:14:50.596" starttime="20210721 10:14:50.596"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:14:52.597" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:14:52.597" starttime="20210721 10:14:50.596"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:52.597" critical="yes" starttime="20210721 10:14:50.596"></status>
+</test>
+<test id="s1-t5" name="Demo3">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test The RF Principle</arg>
+</arguments>
+<msg timestamp="20210721 10:14:52.598" level="INFO">Test The RF Principle</msg>
+<status status="PASS" endtime="20210721 10:14:52.598" starttime="20210721 10:14:52.598"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:14:54.599" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:14:54.599" starttime="20210721 10:14:52.598"></status>
+</kw>
+<kw name="TestUKW">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Debugging</arg>
+</arguments>
+<msg timestamp="20210721 10:14:54.599" level="INFO">Debugging</msg>
+<status status="PASS" endtime="20210721 10:14:54.599" starttime="20210721 10:14:54.599"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:54.600" starttime="20210721 10:14:54.599"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:54.600" critical="yes" starttime="20210721 10:14:52.597"></status>
+</test>
+<test id="s1-t6" name="Demo12">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test Case Demo1</arg>
+</arguments>
+<msg timestamp="20210721 10:14:54.600" level="INFO">Test Case Demo1</msg>
+<status status="PASS" endtime="20210721 10:14:54.600" starttime="20210721 10:14:54.600"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:14:56.601" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:14:56.601" starttime="20210721 10:14:54.601"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:56.601" critical="yes" starttime="20210721 10:14:54.600"></status>
+</test>
+<test id="s1-t7" name="Demo4">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test The RF Principle</arg>
+</arguments>
+<msg timestamp="20210721 10:14:56.603" level="INFO">Test The RF Principle</msg>
+<status status="PASS" endtime="20210721 10:14:56.603" starttime="20210721 10:14:56.602"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:14:58.603" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:14:58.603" starttime="20210721 10:14:56.603"></status>
+</kw>
+<kw name="TestUKW">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Debugging</arg>
+</arguments>
+<msg timestamp="20210721 10:14:58.604" level="INFO">Debugging</msg>
+<status status="PASS" endtime="20210721 10:14:58.604" starttime="20210721 10:14:58.604"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:58.604" starttime="20210721 10:14:58.603"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:14:58.604" critical="yes" starttime="20210721 10:14:56.602"></status>
+</test>
+<test id="s1-t8" name="Demo13">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Test Case Demo1</arg>
+</arguments>
+<msg timestamp="20210721 10:14:58.605" level="INFO">Test Case Demo1</msg>
+<status status="PASS" endtime="20210721 10:14:58.605" starttime="20210721 10:14:58.605"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20210721 10:15:00.606" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20210721 10:15:00.607" starttime="20210721 10:14:58.605"></status>
+</kw>
+<status status="PASS" endtime="20210721 10:15:00.607" critical="yes" starttime="20210721 10:14:58.605"></status>
+</test>
+<status status="PASS" endtime="20210721 10:15:00.609" starttime="20210721 10:14:43.980"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="8">Critical Tests</stat>
+<stat fail="0" pass="8">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="LearnRF" pass="8">LearnRF</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

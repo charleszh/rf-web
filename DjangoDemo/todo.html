@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .empty {
+            border-color: red;
+            color: red;
+            font-size: smaller;
+        }
+    </style>
+    <title>Vue Todo Tutorial</title>
+</head>
+<body>
+    <div id="app">
+    <input type="text" v-on:blur="detectFocus" v-bind:class='{empty: cssAlert && !count}' v-model="value">
+    <input type="button" value="发送" v-on:click="send">
+    <div v-if="value">value 的值是：{{ value }}</div>
+    <div v-if="value">value 的length是：{{ count }}</div>
+    <div v-if="this.cssAlert && !count" class='empty'>输入不能为空！</div>
+    </div>
+</body>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                value: '',
+                cssAlert: false
+            }
+        },
+        methods: {
+            send: function () {
+                if(this.count) {
+                 alert('send successfully!')
+                 this.value = ''
+                } else {
+                    alert('the input is null!')
+                }
+            },
+            detectFocus: function () {
+                //alert(this.count)
+                if(!this.count) {
+                    this.cssAlert = true
+                } else {
+                    this.cssAlert = false
+                }
+            },
+
+        },
+        computed: {
+            count: function () {
+                return this.value.length
+            }
+        }
+    })
+</script>
+</html>

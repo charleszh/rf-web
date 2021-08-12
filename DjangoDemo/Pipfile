@@ -1,0 +1,29 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+pymysql = "*"
+djangorestframework = {index = "http://mirrors.aliyun.com/pypi/simple/", version = "*"}
+django-cors-headers = {index = "http://mirrors.aliyun.com/pypi/simple/", version = "*"}
+django-filters = "*"
+django-filter = "*"
+dwebsocket = "*"
+fake-useragent = "*"
+parsel = "*"
+httpx = "*"
+faker = "*"
+django-redis-cache = "*"
+drf-extensions = "*"
+drf-yasg = "*"
+django = "==2.2.3"
+djangorestframework-jwt = "*"
+django-redis = "*"
+pyredis-cache = "*"
+redis = "*"
+
+[requires]
+python_version = "3.8"

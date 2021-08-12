@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Todo</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+
+        .selected {
+            color: red;
+        }
+        .empty {
+            border-color: red;
+            color: red;
+            font-size: smaller;
+        }
+    </style>
+</head>
+<body>
+<div id="todo-app">
+    <div>
+        <input type="button" @click="markAllCompleted" value="全部标为完成"/>
+        <input type="text" placeholder="添加 todo" v-bind:class='{empty: cssAlert && !count}' v-model="newTodoTitle" @keyup.enter="addTodo"/>
+		<span v-if="this.cssAlert && !count" class='empty'>输入不能为空！</span>
+    </div>
+    <!-- todo list -->
+    <ul>
+        <li v-if="todo.valid" v-for="todo in filteredTodos" :key="todo.id">
+            <span :class="{completed: todo.completed}" v-on:dblclick="editTodo(todo)">{{todo.title}}</span>
+            <input type="button" v-if="!todo.completed" v-on:click="markAsCompleted(todo)" value="标为完成">
+			<input type="button" v-if="todo.completed" v-on:click="markAsUncompleted(todo)" value="标为未完成">
+            <input type="button" v-on:click="deleteTodo(todo)" value="删除">
+            <input type="text" v-if="editedTodo && editedTodo.id==todo.id" value="编辑 todo..." v-model="todo.title" @keyup.enter="editDone(todo)" @keyup.esc="cacelEdit(todo)" v-focus="true">
+        </li>
+    </ul>
+    <!-- end todo list -->
+	<div v-if="this.invalidCount">
+    <span>已删除任务 ---</span>
+	<input type="button" @click="cancelAllDelTodos" value="全部恢复">
+    <ul>
+		<li v-if="!todo.valid" v-for="todo in todos" :key="todo.id">
+			<span v-if="!todo.valid">{{todo.title}}</span>
+			<input type="button" v-on:click="cancelDel(todo)" value="恢复任务">
+		</li>
+    </ul>
+    </div>
+	<div>
+        <span v-if="leftTodosCount" style="font-weight: bold">剩余 {{ leftTodosCount }} 项未完成 ---</span>
+		<span v-if="!leftTodosCount" style="font-weight: bold">太棒了，你完成了所有任务！ ---</span>
+        <span v-if="invalidCount!=todos.length">筛选：
+      <input type="button" v-bind:class="{selected: intention==='all'}" value="全部" @click="intention='all'">
+      <input type="button" :class="{selected: intention==='ongoing'}" value="进行中" @click="intention='ongoing'">
+      <input type="button" :class="{selected: intention==='completed'}" value="已完成" @click="intention='completed'">
+      <input type="button" value="清除已完成" @click="clearCompleted">
+      <input type="button" value="清除全部" @click="clearAll">
+    </span>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script>
+    let id = 0
+    var app = new Vue({
+        el: '#todo-app',
+        data: function () {
+            return {
+                todos: [],
+                newTodoTitle: '',
+				cssAlert: false,
+				existInvalid: false,
+				invalidCount: 0,
+				editedTodo: null,
+				intention: 'all',
+
+            }
+        },
+        methods: {
+            addTodo: function () {
+                if ( this.newTodoTitle ) {
+                    this.todos.push({id: id++, title: this.newTodoTitle, completed: false, valid: true})
+                    this.newTodoTitle = ''
+					this.cssAlert = false
+                } else {
+					this.cssAlert = true
+					alert("You need to input the todo titile!")
+				}
+
+            },
+			detectFocus: function () {
+                //alert(this.count)
+                if(!this.count) {
+                    this.cssAlert = true
+                } else {
+                    this.cssAlert = false
+                }
+            },
+			markAsCompleted: function (todo) {
+				todo.completed = true
+			},
+			markAsUncompleted: function (todo) {
+				todo.completed = false
+			},
+			markAllCompleted: function () {
+				this.todos.map( function (todo) {
+					if (!todo.completed) { 
+						todo.completed = true
+					}
+				})
+			},
+			deleteTodo: function (todo, logicDel=false) {
+				let box = confirm('您确定删除吗？')
+				
+				if ( box == true ) {
+					if ( logicDel ) {
+						this.todos.splice(this.todos.indexOf(todo), 1)
+					} else {
+						
+						this.invalidCount += 1
+						//this.todos.push({id: id++, title: this.newTodoTitle, completed: false, valid: false})
+						if (this.editedTodo) {
+							this.cacelEdit(todo)
+						}
+						this.todos[this.todos.indexOf(todo)].valid = false
+						//this.todos.splice(this.todos.indexOf(todo), 1)
+					}
+				} else {
+					alert('您已取消删除此待办任务！')
+				}
+			},
+			cancelDel: function (todo) {
+				this.todos[this.todos.indexOf(todo)].valid = true
+				this.invalidCount -= 1
+			},
+			cancelAllDelTodos: function () {
+				console.log("in cancel all del todos")
+				this.todos.map( function (todo) {
+					if (!todo.valid) {
+						todo.valid = true
+					}
+				})
+				this.invalidCount = 0
+			},
+			editTodo: function (todo) {
+				this.editedTodo = {id: todo.id, title: todo.title}
+			},
+			editDone: function (todo) {
+				if (todo.title === '' || todo.title.match(/^[ ]*$/)) {
+					this.deleteTodo(todo, logicDel=true)
+				}
+				this.editedTodo = null
+			},
+			cacelEdit: function (todo) {
+				todo.title = this.editedTodo.title
+				this.editedTodo = null
+			},
+			clearCompleted: function () {
+				let tempCount = this.invalidCount
+				this.todos.map( function (todo) {
+					if (todo.completed && todo.valid) {
+						tempCount += 1						
+						todo.valid = false
+						
+					}
+				})
+				this.invalidCount = tempCount
+			},
+			clearAll: function () {
+				let tempCount = this.invalidCount
+				this.todos.map( function (todo) {
+					if (todo.valid) {
+						tempCount += 1
+						todo.valid = false
+					}
+				})
+				this.invalidCount = tempCount
+			},
+        },
+		directives: {
+			focus: {
+				inserted: function (el) {
+					el.focus()
+					}
+				}
+		},
+		computed: {
+            count: function () {
+                return this.newTodoTitle.length
+				
+            },
+			leftTodos: function () {
+				return this.todos.filter(todo => !todo.completed && todo.valid)
+			},
+			leftTodosCount: function () {
+				return this.todos.filter(todo => !todo.completed && todo.valid).length
+			},
+			filteredTodos: function () {
+				if (this.intention === 'ongoing') {
+					return this.leftTodos
+				} else if (this.intention === 'completed') {
+					return this.todos.filter(todo => todo.completed && todo.valid)
+				} else {
+					return this.todos.filter(todo => todo.valid)
+				}
+			},
+
+        }
+    })
+</script>
+</body>
+</html>
