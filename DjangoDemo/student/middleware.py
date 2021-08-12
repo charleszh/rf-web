@@ -13,7 +13,7 @@ class TimeItMiddleware(MiddlewareMixin):
         start = time.time()
         response = func(request)
         costed = time.time() - start
-        print('process view: {:.2f}s'.format(costed))
+        print('process 1 view: {:.2f}s'.format(costed))
         return response
 
     def process_exception(self, reqeust, response):
