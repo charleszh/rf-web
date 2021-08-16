@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from .views import * #PostViewSet, TestCaseViewSet, TagViewSet, showLog, executeSuite, getFileTreeList, saveSuiteFile
 app_name = 'blog'
 router = DefaultRouter()
-router.register(r'show_books', PostViewSet)
+#router.register(r'show_books', PostViewSet)
 router.register(r'show_testcases', TestCaseViewSet, basename='tc')
 router.register(r'show_tags', TagViewSet)
 urlpatterns = [

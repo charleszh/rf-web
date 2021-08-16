@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Category, TestCase, ExecuteStatus, Tag
+from .models import Category, TestCase, ExecuteStatus, Tag
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,21 +10,21 @@ class ExecteStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExecuteStatus
         fields = "__all__"
-class PostSerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
-    class Meta:
-        model = Post
-        fields = "__all__"
-
-    def create(self, validated_data):
-        category_data = validated_data.pop('category')
-        # 'created' will be True if no existing category matches
-        tagRecords = validated_data.pop('tags')
-        category, created = Category.objects.get_or_create(**category_data)
-        post = Post.objects.create(category=category, **validated_data)
-        for tag in tagRecords:
-            post.tags.add(tag)
-        return post
+# class PostSerializer(serializers.ModelSerializer):
+#     category = CategorySerializer()
+#     class Meta:
+#         model = Post
+#         fields = "__all__"
+#
+#     def create(self, validated_data):
+#         category_data = validated_data.pop('category')
+#         # 'created' will be True if no existing category matches
+#         tagRecords = validated_data.pop('tags')
+#         category, created = Category.objects.get_or_create(**category_data)
+#         post = Post.objects.create(category=category, **validated_data)
+#         for tag in tagRecords:
+#             post.tags.add(tag)
+#         return post
 
 class TestCaseSerializer(serializers.ModelSerializer):
     execute_status = ExecteStatusSerializer()

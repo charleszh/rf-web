@@ -9,8 +9,8 @@ from django.conf import settings
 
 import json
 from django.views.decorators.http import require_http_methods
-from blog.filters import PostFilter, TestCaseFilter
-from blog.models import Post, TestCase, Tag
+from blog.filters import TestCaseFilter
+from blog.models import TestCase, Tag
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
@@ -23,7 +23,7 @@ from rest_framework_extensions.key_constructor.bits import (
     RetrieveSqlQueryKeyBit
 )
 from rest_framework_extensions.key_constructor.constructors import DefaultKeyConstructor
-from .serializers import PostSerializer, TestCaseSerializer, TagSerializer
+from .serializers import TestCaseSerializer, TagSerializer
 from dwebsocket import accept_websocket
 from .utils import getPathList, saveFile, UpdatedAtKeyBit
 from django.http import JsonResponse
@@ -42,12 +42,12 @@ def index(httpRequest):
         'title': 'My first',
         'my': 'Charles\''
     })
-class PostViewSet(ModelViewSet):
-    queryset = Post.objects.all().order_by("id")
-    serializer_class = PostSerializer
-    filter_backends = (DjangoFilterBackend,)
-    # 设置filter的类为我们自定义的类
-    filter_class = PostFilter
+# class PostViewSet(ModelViewSet):
+#     queryset = Post.objects.all().order_by("id")
+#     serializer_class = PostSerializer
+#     filter_backends = (DjangoFilterBackend,)
+#     # 设置filter的类为我们自定义的类
+#     filter_class = PostFilter
 
 class TestCaseUpdatedAtKeyBit(UpdatedAtKeyBit):
     key = "testcase_updated_at"

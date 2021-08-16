@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'users',
     'drf_yasg',
     'student',
+    'newblog',
+    'config',
+    'comment',
 ]
 
 MIDDLEWARE = [
@@ -171,4 +174,3 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
