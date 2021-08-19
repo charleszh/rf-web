@@ -20,6 +20,8 @@ from rest_framework import permissions, routers
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
+from .custom_site import custom_site
+
 schema_view = get_schema_view(
     openapi.Info(
         title = "Hello Django Rest Framework tutorial API",
@@ -34,7 +36,8 @@ schema_view = get_schema_view(
 )
 print("in project urls")
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('super_admin/', admin.site.urls),
+    path('admin/', custom_site.urls),
     path(r'api/accounts/', include('users.urls')),
     path(r'api-token-auth/', obtain_jwt_token),
     path(r'api/api-token-refresh/', refresh_jwt_token),

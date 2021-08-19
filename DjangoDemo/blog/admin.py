@@ -10,6 +10,6 @@ class TestCaseAdmin(admin.ModelAdmin):
     readonly_fields = ['modified_time']
 
 #admin.site.register(Post, PostAdmin)
-admin.site.register(Category)
-admin.site.register(Tag)
-admin.site.register(TestCase, TestCaseAdmin)
+#admin.site.register(Category)
+#admin.site.register(Tag)
+#admin.site.register(TestCase, TestCaseAdmin)
