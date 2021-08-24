@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from blogproject.custom_site import custom_site
-
+from blogproject.base_admin import BaseOwnerAdmin
 from .models import Comment
 # Register your models here.
 

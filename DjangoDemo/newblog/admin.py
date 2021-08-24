@@ -1,10 +1,13 @@
 from django.contrib import admin
+from django.contrib.admin.models import LogEntry
 
 from django.urls import reverse
 from django.utils.html import format_html
 from .models import Category, Tag, Post
 from .adminforms import PostAdminForm
 from blogproject.custom_site import custom_site
+from blogproject.base_admin import BaseOwnerAdmin
+from blogproject.loghandler import logger
 # Register your models here.
 
 
@@ -25,7 +28,7 @@ class CategoryOwnerFilter(admin.SimpleListFilter):
 
 
 @admin.register(Post, site=custom_site)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(BaseOwnerAdmin):
     list_display = ['title', 'content', 'created_time', 'category', 'status', 'operator', 'author']#tmp comment, 'author']
     list_display_links = ['title']
 
@@ -82,14 +85,6 @@ class PostAdmin(admin.ModelAdmin):
         )
     operator.short_description = '操作'
 
-    def save_model(self, request, obj, form, change):
-        obj.author = request.user
-        return super(PostAdmin, self).save_model(request, obj, form, change)
-
-    def get_queryset(self, request):
-        qs = super(PostAdmin, self).get_queryset(request)
-        return qs.filter(author=request.user)
-
     class Media:
         css = {
             'all': ("https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css", ),
@@ -102,26 +97,26 @@ class PostInline(admin.TabularInline):
     extra = 1
     model = Post
 
+
 @admin.register(Category, site=custom_site)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(BaseOwnerAdmin):
     list_display = ['name', 'status', 'is_nav', 'author', 'created_time', 'post_count']
     fields = ['name', 'status', 'is_nav']
     inlines = [PostInline]
-
-    def save_model(self, request, obj, form, change):
-        obj.author = request.user
-        return super(CategoryAdmin, self).save_model(request, obj, form, change)
 
     def post_count(self, obj):
         return obj.post_set.count()
 
     post_count.short_description = '文章数量'
 
-
 @admin.register(Tag, site=custom_site)
-class TagAdmin(admin.ModelAdmin):
+class TagAdmin(BaseOwnerAdmin):
     pass
 
+
+@admin.register(LogEntry, site=custom_site)
+class LogEntryAdmin(admin.ModelAdmin):
+    list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)

@@ -174,3 +174,96 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+
+
+
+# logging配置
+"""
+log_file_path = os.path.join('.', 'all.log')
+
+LOGGING = {
+    'version': 1,
+    #'disable_existing_loggers': True,
+    'formatters': {
+        # 日志格式
+        'standard': {
+            'format': '%(asctime)s [%(name)s:%(lineno)d] '
+                      '[%(module)s:%(funcName)s] [%(levelname)s]- %(message)s'
+        }
+    },
+    'filter': {
+
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
+        'default': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': log_file_path,         # 日志输出文件
+            'maxBytes': 1024*1024*5,                  # 文件大小
+            'backupCount': 5,                         # 备份份数
+            'formatter': 'standard',                  #使用哪种formatters日志格式
+        },
+        'error': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': log_file_path,
+            'maxBytes': 1024*1024*5,
+            'backupCount': 5,
+            'formatter': 'standard',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+        'request_handler': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': log_file_path,
+            'maxBytes': 1024*1024*5,
+            'backupCount': 5,
+            'formatter': 'standard',
+        },
+        'scprits_handler': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': log_file_path,
+            'maxBytes': 1024*1024*5,
+            'backupCount': 5,
+            'formatter': 'standard',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['default', 'console'],  # 来自上面定义的handlers内容
+            'level': 'INFO',
+            'propagate': False  # 是否继承父类的log信息
+        },
+        'scripts': {
+            'handlers': ['scprits_handler'],
+            'level': 'INFO',
+            'propagate': False
+        },
+        # sourceDns.webdns.views 应用的py文件
+        'sourceDns.webdns.views': {
+            'handlers': ['default', 'error'],
+            'level': 'INFO',
+            'propagate': True
+        },
+        'sourceDns.webdns.util': {
+            'handlers': ['error'],
+            'level': 'ERROR',
+            'propagate': True
+        },
+        # 'django.request': {
+        #             'handlers': ['mail_admins'],
+        #             'level': 'ERROR',
+        #             'propagate': False,
+        #         },
+    }
+}"""

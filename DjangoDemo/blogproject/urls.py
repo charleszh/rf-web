@@ -43,7 +43,9 @@ urlpatterns = [
     path(r'api/api-token-refresh/', refresh_jwt_token),
     path(r'api-token-verify/', verify_jwt_token),
     path(r'api/student/', include('student.urls', namespace='student-ns')),
+    path(r'newblog/', include('newblog.urls')),
     path(r'', include('blog.urls')),
+
 
     re_path(
         r"swagger(?P<format>\.json|.yaml)",
