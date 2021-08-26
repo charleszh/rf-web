@@ -17,7 +17,6 @@ class CommonViewMixin:
         })
         context.update(Category.get_navs())
         logger.info("out of f common")
-        logger.info(context)
         return context
 
 
