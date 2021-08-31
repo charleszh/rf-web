@@ -16,13 +16,13 @@ class CommonViewMixin:
             'sidebars': SideBar.get_all(),
         })
         context.update(Category.get_navs())
-        logger.info("out of f common")
         return context
 
 
 class IndexView(CommonViewMixin, ListView):
     logger.info("enter into f indexview")
     queryset = Post.latest_posts()
+    logger.info(queryset[0].get_all_tag())
     paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'newblog/list.html'

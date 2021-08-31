@@ -16,14 +16,13 @@ class CommonViewMixin:
             'sidebars': SideBar.get_all(),
         })
         context.update(Category.get_navs())
-        logger.info("out of f common")
-        logger.info(context)
         return context
 
 
 class IndexView(CommonViewMixin, ListView):
     logger.info("enter into f indexview")
     queryset = Post.latest_posts()
+    logger.info(queryset[0].get_all_tag())
     paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'newblog/list.html'
@@ -59,7 +58,7 @@ class TagView(IndexView):
     def get_queryset(self):
         queryset = super().get_queryset()
         tag_id = self.kwargs.get('tag_id')
-        return queryset.filter(tag_id=tag_id)
+        return queryset.filter(tag=tag_id)
 
 
 class PostListView(ListView):

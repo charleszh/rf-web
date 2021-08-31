@@ -93,6 +93,9 @@ class Post(models.Model):
     def hot_posts(cls):
         return cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-pv')[0:cls.list_show_num]
 
+    def get_all_tag(self):
+        return self.tag.all()
+
     @staticmethod
     def get_by_tag(tag_id):
         try:
