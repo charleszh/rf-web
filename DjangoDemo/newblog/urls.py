@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
-from newblog.views import IndexView, CategoryView, TagView, PostListView, PostDetailView, post_list, post_detail
+from newblog.views import AuthorView, SearchView, IndexView, CategoryView, TagView, PostListView, PostDetailView, post_list, post_detail
 from config.views import links
 from blogproject.custom_site import custom_site
 
@@ -16,5 +16,7 @@ urlpatterns = [
     url(r'^tag/(?P<tag_id>\d+)/$', TagView.as_view(), name='tag-list'),
     #url(r'^post/(?P<post_id>\d+).html$', post_detail, name='post-detail'),
     url(r'^post/(?P<post_id>\d+).html$', PostDetailView.as_view(), name='post-detail'),
+    url(r'^search/$', SearchView.as_view(), name='search'),
+    url(r'^author/(?P<author_id>\d+)/$', AuthorView.as_view(), name='author'),
     url(r'^links/$', links),
 ]

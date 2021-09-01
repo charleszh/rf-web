@@ -4,6 +4,10 @@
     标签页: {{ tag.name }}
     {% elif category %}
     分类页：{{ category.name }}
+    {% elif author%}
+    作者：{{ author.username}}
+    {% else %}
+    首页
     {% endif %}
 {% endblock %}
 
@@ -12,7 +16,7 @@
     <div class="card post">
         <div class="card-body">
             <h5 class="card-title"><a href="{% url 'newblog:post-detail' post.id %}">{{ post.title }}</a></h5>
-            <span class="card-link">作者：<a href="#"> {{ post.author.username }} </a></span>
+            <span class="card-link">作者：<a href="{% url 'newblog:author' post.author.id %}"> {{ post.author.username }} </a></span>
             <span class="card-link">分类：<a href="{% url 'newblog:category-list' post.category.id %}"> {{ post.category.name }}</a></span>
             <span class="card-link">标签: 
             {% for tag in post.tag.all %}

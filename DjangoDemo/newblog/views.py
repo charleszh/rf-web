@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.views.generic import ListView
+from django.db.models import Q
+
+from django.contrib.auth.models import User
 
 from . import logger
 from .models import Post, Category, Tag
@@ -27,6 +30,38 @@ class IndexView(CommonViewMixin, ListView):
     context_object_name = 'post_list'
     template_name = 'newblog/list.html'
     logger.info("out of indexview")
+
+
+class AuthorView(IndexView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        author_id = self.kwargs.get('author_id')
+        user_obj = get_object_or_404(User, pk=author_id)
+        context.update({
+            'author': user_obj,
+        })
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        author_id = self.kwargs.get("author_id")
+        return queryset.filter(author_id=author_id)
+
+
+class SearchView(IndexView):
+    def get_context_data(self):
+        context = super().get_context_data()
+        context.update({
+            'keyword': self.request.GET.get('keyword', '')
+        })
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        keyword = self.request.GET.get('keyword')
+        if not keyword:
+            return queryset
+        return queryset.filter(Q(title__icontains=keyword) | Q(desc__icontains=keyword))
 
 
 class CategoryView(IndexView):
