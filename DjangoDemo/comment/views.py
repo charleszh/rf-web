@@ -27,6 +27,7 @@ class CommentView(TemplateView):
             succeed = True
             logger.info(instance)
             logger.info("the instance")
+            logger.info(target)
             return redirect(target)
         else:
             succeed = False
