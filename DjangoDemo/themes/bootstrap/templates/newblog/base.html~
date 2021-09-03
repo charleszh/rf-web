@@ -23,7 +23,7 @@
                     </li>
                 {% endfor %}
                 </ul>
-                <form class="form-inline" action='/NewBlog/search/' method='GET'>
+                <form class="form-inline" action='/newblog/search/' method='GET'>
                     <input class="from-control" type="search" name="keyword" placeholder="Search" aria-label="Search" value="{{ keyword }}">
                     <button class="btn btn-outline-success" type="submit">搜索</button>
                 </form>
@@ -50,6 +50,11 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <div class="card sidebar">
+                        <div class="card-body">
+                            <span class="card-title"><a href="{% url 'newblog:links' %}">*** 友情链接 ***</a></span>
+                        </div>
+                    </div>
                 {% endblock %}
             </div>
         </div>

@@ -17,7 +17,6 @@
         <span class="card-link">作者: {{ post.author.username }}</span>
         <span class="card-link">标签: 
             {% for tag in post.tag.all %}
-            <span>test<span>
             <a href="{% url 'newblog:tag-list' tag.id %}">{{ tag.name }}</a>
             {% endfor %}
         </span>
@@ -25,4 +24,27 @@
     <hr/>
     <p>{{ post.content }}</p>
     {% endif %}
+    <hr/>
+    <div class="comment">
+        <form class="form-group" action="{% url 'newblog:comment' %}" method="GET">
+            {% csrf_token %}
+            <input name="target" type="hidden" value="{{ request.path }}"/>
+            {{ comment_form }}
+            <input type="submit" value="写好了！"/>
+        </form>
+        <!-- 评论列表 -->
+        <ul class="list-group">
+            {% for comment in comment_list %}
+            <li class="list-group-item">
+                <div class="nickname">
+                    <a href="{{ comment.website }}">{{ comment.nickname }}</a>
+                        <span>{{ comment.created_time }}</span>
+                </div>
+                <div class="comment-content">
+                    {{ comment.content }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

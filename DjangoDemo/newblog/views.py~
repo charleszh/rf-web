@@ -6,6 +6,9 @@ from django.db.models import Q
 
 from django.contrib.auth.models import User
 
+from comment.forms import CommentForm
+from comment.models import Comment 
+
 from . import logger
 from .models import Post, Category, Tag
 from config.models import SideBar
@@ -38,7 +41,7 @@ class AuthorView(IndexView):
         author_id = self.kwargs.get('author_id')
         user_obj = get_object_or_404(User, pk=author_id)
         context.update({
-            'user_obj': user_obj,
+            'author': user_obj,
         })
         return context
 
@@ -110,6 +113,15 @@ class PostDetailView(CommonViewMixin, DetailView):
     template_name = 'newblog/detail.html'
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'comment_form': CommentForm,
+            'comment_list': Comment.get_by_target(self.request.path),
+        })
+        return context
+
 
 
 def post_list(request, category_id=None, tag_id=None):
