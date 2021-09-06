@@ -23,7 +23,11 @@
         </span>
     </div>
     <hr/>
-    <p>{{ post.content }}</p>
+    <p>
+    {% autoescape off %}
+    {{ post.content_html }}
+    {% endautoescape %}
+    </p>
     {% endif %}
     {% comment_block request.path %}
 {% endblock %}

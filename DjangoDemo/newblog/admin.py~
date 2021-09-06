@@ -29,7 +29,7 @@ class CategoryOwnerFilter(admin.SimpleListFilter):
 
 @admin.register(Post, site=custom_site)
 class PostAdmin(BaseOwnerAdmin):
-    list_display = ['title', 'content', 'created_time', 'category', 'status', 'operator', 'author']#tmp comment, 'author']
+    list_display = ['title', 'content', 'created_time', 'category', 'status', 'operator', 'author', 'pv', 'uv']#tmp comment, 'author']
     list_display_links = ['title']
 
     list_filter = [ CategoryOwnerFilter ]
