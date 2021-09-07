@@ -13,14 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import xadmin
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from rest_framework import permissions, routers
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
+import pdb
 
-from .custom_site import custom_site
+#from .custom_site import custom_site
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -36,8 +38,9 @@ schema_view = get_schema_view(
 )
 print("in project urls")
 urlpatterns = [
-    path('super_admin/', admin.site.urls),
-    path('admin/', custom_site.urls),
+    #path('super_admin/', admin.site.urls),
+    #path('admin/', custom_site.urls),
+    path('admin/', xadmin.site.urls, name='xadmin'),
     path(r'api/accounts/', include('users.urls')),
     path(r'api-token-auth/', obtain_jwt_token),
     path(r'api/api-token-refresh/', refresh_jwt_token),

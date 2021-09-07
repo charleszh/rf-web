@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-pymysql = "*"
 djangorestframework = {index = "http://mirrors.aliyun.com/pypi/simple/", version = "*"}
 django-cors-headers = {index = "http://mirrors.aliyun.com/pypi/simple/", version = "*"}
 django-filters = "*"
@@ -15,16 +14,25 @@ dwebsocket = "*"
 fake-useragent = "*"
 parsel = "*"
 httpx = "*"
-faker = "*"
 django-redis-cache = "*"
 drf-extensions = "*"
 drf-yasg = "*"
-django = "==2.2.3"
 djangorestframework-jwt = "*"
 django-redis = "*"
 pyredis-cache = "*"
 redis = "*"
 mistune = "*"
+django-crispy-forms = ">=1.6.0"
+xadmin = {file = "https://github.com/the5fire/django-xadmin/archive/0.6.1.tar.gz"}
+django-import-export = ">=0.5.1"
+django-reversion = ">=2.0.0"
+django-formtools = "==2.1"
+future = "==0.15.2"
+httplib2 = "==0.9.2"
+six = "==1.10.0"
+PyMySQL = "*"
+Faker = "*"
+Django = ">=2"
 
 [requires]
 python_version = "3.8"

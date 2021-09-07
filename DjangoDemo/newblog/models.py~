@@ -91,11 +91,10 @@ class Post(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
+    logger.info('in post models')
 
     def save(self, *args, **kwargs):
-        logger.info(self.content)
         self.content_html = mistune.markdown(self.content)
-        logger.info(self.content_html)
         super().save(*args, **kwargs)
 
     @classmethod

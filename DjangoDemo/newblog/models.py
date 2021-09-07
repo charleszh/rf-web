@@ -111,7 +111,6 @@ class Post(models.Model):
             tag = None
             post_list = []
         else:
-            logger.info('in post_list for tag')
             post_list = tag.post_set.filter(status = Post.STATUS_NORMAL).select_related('author')
         return post_list, tag
 
@@ -119,13 +118,11 @@ class Post(models.Model):
     def get_by_category(category_id):
         try:
             category = Category.objects.get(id=category_id)
-            logger.info(category)
         except Category.DoesNotExist:
             category = None
             post_list = []
         else:
             post_list = category.post_set.filter(status = Post.STATUS_NORMAL).select_related('author', 'category')
-            logger.info(post_list)
         return post_list, category
 
     @classmethod

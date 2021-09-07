@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'xadmin',
+    'crispy_forms',
     'blog',
     'rest_framework',
     # 'rest_framework.authtoken',
@@ -175,7 +177,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+XADMIN_TITLE = 'Newblog管理后台'
+XADMIN_FOOTER_TITLE = 'power by charles'
 
 # logging配置
 """
@@ -267,3 +270,5 @@ LOGGING = {
         #         },
     }
 }"""
+
+
