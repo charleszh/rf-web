@@ -51,7 +51,22 @@ INSTALLED_APPS = [
     'newblog',
     'config',
     'comment',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+CKEDITOR_CONFIGS = {
+        'default': {
+            'toolbar': 'full',
+            'height': 300,
+            'width': 800,
+            'tabSpaces': 4,
+            'extraPulgins': 'codesnippet',
+        }
+}
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+CKEDITOR_UPLOAD_PATH = "article_images/"
 
 MIDDLEWARE = [
     'newblog.middleware.user_id.UserIDMiddleware',
@@ -176,6 +191,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'themes', 'bootstrap', 'static'),)
 
 XADMIN_TITLE = 'Newblog管理后台'
 XADMIN_FOOTER_TITLE = 'power by charles'

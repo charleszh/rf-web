@@ -33,6 +33,8 @@ six = "==1.10.0"
 PyMySQL = "*"
 Faker = "*"
 Django = ">=2"
+django-ckeditor = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"

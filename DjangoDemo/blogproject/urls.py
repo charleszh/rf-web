@@ -16,6 +16,8 @@ Including another URLconf
 import xadmin
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls import static
+from django.conf import settings
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from rest_framework import permissions, routers
 from drf_yasg import openapi
@@ -41,6 +43,7 @@ urlpatterns = [
     #path('super_admin/', admin.site.urls),
     #path('admin/', custom_site.urls),
     path('admin/', xadmin.site.urls, name='xadmin'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path(r'api/accounts/', include('users.urls')),
     path(r'api-token-auth/', obtain_jwt_token),
     path(r'api/api-token-refresh/', refresh_jwt_token),
@@ -61,4 +64,4 @@ urlpatterns = [
         name="schema-swagger-ui",
     ),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
-]
+] + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
